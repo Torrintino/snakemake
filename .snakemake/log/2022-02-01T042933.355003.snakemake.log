@@ -1,4 +1,0 @@
-Building DAG of jobs...
-MissingInputException in line 7 of /home/weislenn/snakemake/workflow/Snakefile:
-Missing input files for rule split:
-data/input.txt
