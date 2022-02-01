@@ -1,0 +1,30 @@
+# configfile: "config.yaml"
+
+rule all:
+    input: "result.txt"
+        
+
+rule split:
+    input: "data/input.txt"
+    output:
+        "chunk_aa", "chunk_ab"
+    shell:
+        "bin/split.sh {input}"
+
+rule count:
+    input: "chunk_{id}"
+    output: "word-count-{id}.txt"
+    shell:
+        "bin/word_count.py {input} > {output}"
+
+rule sort:
+    input: "word-count-{id}.txt"
+    output: "sorted-{id}.txt"
+    shell:
+        "bin/sort.py {input} > {output}"
+
+rule calc:
+    input: "sorted-aa.txt", "sorted-ab.txt"
+    output: "result.txt"
+    shell:
+        "bin/calc_deviance.py {input} > {output}"
