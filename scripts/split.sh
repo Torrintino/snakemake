@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+set -ex
 
 lc=$(wc -l < $1)
 if [ $((lc % 2)) == 0 ]; then
