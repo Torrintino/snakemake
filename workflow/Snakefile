@@ -7,7 +7,7 @@ rule split:
     output:
         "results/chunk_aa", "results/chunk_ab"
     shell:
-        "chmod +x workflow/scripts/split.sh && workflow/scripts/split.sh {input} results/"
+        "chmod +x workflow/scripts/split.sh && workflow/scripts/split.sh {input} snakemake/results/"
 
 rule count:
     input: "results/chunk_{id}"
