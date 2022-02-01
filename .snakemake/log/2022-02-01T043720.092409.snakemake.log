@@ -1,0 +1,33 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job      count    min threads    max threads
+-----  -------  -------------  -------------
+all          1              1              1
+calc         1              1              1
+count        2              1              1
+sort         2              1              1
+split        1              1              1
+total        7              1              1
+
+Select jobs to execute...
+
+[Tue Feb  1 04:37:20 2022]
+rule split:
+    input: data/input.txt
+    output: results/chunk_aa, results/chunk_ab
+    jobid: 4
+    resources: tmpdir=/tmp
+
+Waiting at most 5 seconds for missing files.
+MissingOutputException in line 7 of /home/weislenn/snakemake/workflow/Snakefile:
+Job Missing files after 5 seconds:
+results/chunk_aa
+results/chunk_ab
+This might be due to filesystem latency. If that is the case, consider to increase the wait time with --latency-wait.
+Job id: 4 completed successfully, but some output files are missing. 4
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /home/weislenn/snakemake/.snakemake/log/2022-02-01T043720.092409.snakemake.log

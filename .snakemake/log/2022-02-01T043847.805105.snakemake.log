@@ -1,0 +1,102 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job      count    min threads    max threads
+-----  -------  -------------  -------------
+all          1              1              1
+calc         1              1              1
+count        2              1              1
+sort         2              1              1
+split        1              1              1
+total        7              1              1
+
+Select jobs to execute...
+
+[Tue Feb  1 04:38:48 2022]
+rule split:
+    input: data/input.txt
+    output: results/chunk_aa, results/chunk_ab
+    jobid: 4
+    resources: tmpdir=/tmp
+
+[Tue Feb  1 04:38:48 2022]
+Finished job 4.
+1 of 7 steps (14%) done
+Select jobs to execute...
+
+[Tue Feb  1 04:38:48 2022]
+rule count:
+    input: results/chunk_ab
+    output: results/word-count-ab.txt
+    jobid: 6
+    wildcards: id=ab
+    resources: tmpdir=/tmp
+
+[Tue Feb  1 04:38:48 2022]
+Finished job 6.
+2 of 7 steps (29%) done
+Select jobs to execute...
+
+[Tue Feb  1 04:38:48 2022]
+rule count:
+    input: results/chunk_aa
+    output: results/word-count-aa.txt
+    jobid: 3
+    wildcards: id=aa
+    resources: tmpdir=/tmp
+
+[Tue Feb  1 04:38:48 2022]
+Finished job 3.
+3 of 7 steps (43%) done
+Select jobs to execute...
+
+[Tue Feb  1 04:38:48 2022]
+rule sort:
+    input: results/word-count-ab.txt
+    output: results/sorted-ab.txt
+    jobid: 5
+    wildcards: id=ab
+    resources: tmpdir=/tmp
+
+[Tue Feb  1 04:38:48 2022]
+Finished job 5.
+4 of 7 steps (57%) done
+Select jobs to execute...
+
+[Tue Feb  1 04:38:48 2022]
+rule sort:
+    input: results/word-count-aa.txt
+    output: results/sorted-aa.txt
+    jobid: 2
+    wildcards: id=aa
+    resources: tmpdir=/tmp
+
+[Tue Feb  1 04:38:48 2022]
+Finished job 2.
+5 of 7 steps (71%) done
+Select jobs to execute...
+
+[Tue Feb  1 04:38:48 2022]
+rule calc:
+    input: results/sorted-aa.txt, results/sorted-ab.txt
+    output: results/result.txt
+    jobid: 1
+    resources: tmpdir=/tmp
+
+[Tue Feb  1 04:38:49 2022]
+Finished job 1.
+6 of 7 steps (86%) done
+Select jobs to execute...
+
+[Tue Feb  1 04:38:49 2022]
+localrule all:
+    input: results/result.txt
+    jobid: 0
+    resources: tmpdir=/tmp
+
+[Tue Feb  1 04:38:49 2022]
+Finished job 0.
+7 of 7 steps (100%) done
+Complete log: /home/weislenn/snakemake/.snakemake/log/2022-02-01T043847.805105.snakemake.log

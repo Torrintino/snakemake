@@ -1,0 +1,34 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job      count    min threads    max threads
+-----  -------  -------------  -------------
+all          1              1              1
+calc         1              1              1
+count        2              1              1
+sort         2              1              1
+split        1              1              1
+total        7              1              1
+
+Select jobs to execute...
+
+[Tue Feb  1 04:32:13 2022]
+rule split:
+    input: data/input.txt
+    output: results/chunk_aa, results/chunk_ab
+    jobid: 4
+    resources: tmpdir=/tmp
+
+[Tue Feb  1 04:32:13 2022]
+Error in rule split:
+    jobid: 4
+    output: results/chunk_aa, results/chunk_ab
+    shell:
+        bin/split.sh data/input.txt
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /home/weislenn/snakemake/.snakemake/log/2022-02-01T043213.057807.snakemake.log

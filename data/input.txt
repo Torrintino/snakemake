@@ -1,0 +1,10 @@
+verlag
+erfurt
+isbn
+hans
+joerg
+kuehne
+bielefeld
+von
+bis
+wissenswertes
