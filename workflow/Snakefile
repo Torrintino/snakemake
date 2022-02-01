@@ -9,7 +9,7 @@ rule split:
     output:
         "results/chunk_aa", "results/chunk_ab"
     shell:
-        "ls -lh snakemake/data && ls -lh scripts"
+        "ls -lh scripts/split.sh"
         # "scripts/split.sh {input} results/"
 
 rule count:
