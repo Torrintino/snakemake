@@ -1,31 +1,28 @@
-# configfile: "config.yaml"
 
 rule all:
     input: "results/result.txt"
-
 
 rule split:
     input: "data/input.txt"
     output:
         "results/chunk_aa", "results/chunk_ab"
     shell:
-        "ls -lh scripts/split.sh"
-        # "scripts/split.sh {input} results/"
+        "workflow/scripts/split.sh {input} results/"
 
 rule count:
     input: "results/chunk_{id}"
     output: "results/word-count-{id}.txt"
     shell:
-        "scripts/word_count.py {input} > {output}"
+        "workflow/scripts/word_count.py {input} > {output}"
 
 rule sort:
     input: "results/word-count-{id}.txt"
     output: "results/sorted-{id}.txt"
     shell:
-        "scripts/sort.py {input} > {output}"
+        "workflow/scripts/sort.py {input} > {output}"
 
 rule calc:
     input: "results/sorted-aa.txt", "results/sorted-ab.txt"
     output: "results/result.txt"
     shell:
-        "scripts/calc_deviance.py {input} > {output}"
+        "workflow/scripts/calc_deviance.py {input} > {output}"
