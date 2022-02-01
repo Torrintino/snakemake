@@ -7,22 +7,22 @@ rule split:
     output:
         "results/chunk_aa", "results/chunk_ab"
     shell:
-        "chmod +x workflow/scripts/split.sh && workflow/scripts/split.sh {input} snakemake/results/"
+        "bash workflow/scripts/split.sh {input} snakemake/results/"
 
 rule count:
     input: "results/chunk_{id}"
     output: "results/word-count-{id}.txt"
     shell:
-        "workflow/scripts/word_count.py {input} > {output}"
+        "python3 workflow/scripts/word_count.py {input} > {output}"
 
 rule sort:
     input: "results/word-count-{id}.txt"
     output: "results/sorted-{id}.txt"
     shell:
-        "workflow/scripts/sort.py {input} > {output}"
+        "python3 workflow/scripts/sort.py {input} > {output}"
 
 rule calc:
     input: "results/sorted-aa.txt", "results/sorted-ab.txt"
     output: "results/result.txt"
     shell:
-        "workflow/scripts/calc_deviance.py {input} > {output}"
+        "python3 workflow/scripts/calc_deviance.py {input} > {output}"
