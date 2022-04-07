@@ -8,3 +8,5 @@ if [ $((lc % 2)) == 0 ]; then
 fi
 lc=$((lc / 2))
 cat $1 | split -l $lc - $2chunk_
+pwd
+ls
