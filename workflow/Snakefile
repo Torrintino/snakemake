@@ -1,4 +1,4 @@
-CHUNK_NUM = 2
+CHUNK_NUM = 107
 RESULT_DIR = "snakemake/results/"
 
 scattergather:
