@@ -1,4 +1,4 @@
-CHUNK_NUM = 107
+CHUNK_NUM = 53
 RESULT_DIR = "snakemake/results/"
 
 scattergather:
@@ -46,7 +46,7 @@ rule merge:
     input: gather.split("results/sorted_{{part_id}}_{scatteritem}")
     output: "results/result_{part_id}"
     shell:
-        "python3 workflow/scripts/merge.py {input} > {output}"
+        "python3 workflow/scripts/merge.py '{input}' > {output}"
 
 
 rule calc:
